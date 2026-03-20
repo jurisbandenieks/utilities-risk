@@ -32,3 +32,82 @@ Client (port 3000) ──┐
                      │
                      └──> /     → Client
 ```
+
+-- Core Tables
+trades -- trade_id, instrument, direction, qty, price, trader_id, timestamp
+positions -- position_id, instrument, net_qty, avg_price, mtm_value
+risk_metrics -- metric_id, position_id, var_1d, cvar, exposure, calculated_at
+pnl_snapshots -- snapshot_id, portfolio_id, realized_pnl, unrealized_pnl, timestamp
+alerts -- alert_id, type, threshold, status, triggered_at
+users -- user_id, email, role, created_at
+audit_logs -- log_id, user_id, action, entity, timestamp, ip_address
+
+-- TimescaleDB Hypertables (Time-Series)
+market_price_ticks -- instrument_id, price, volume, bid, ask, timestamp (partitioned by time)
+risk_metric_history -- position_id, var_value, exposure, timestamp (partitioned by time)
+
+src/
+├── RiskPlatform.API/
+│ ├── Controllers/
+│ │ ├── TradesController.cs
+│ │ ├── PositionsController.cs
+│ │ ├── RiskController.cs
+│ │ ├── PnLController.cs
+│ │ └── AlertsController.cs
+│ ├── Hubs/
+│ │ └── RiskHub.cs # SignalR real-time hub
+│ ├── Middleware/
+│ │ ├── JwtMiddleware.cs
+│ │ └── AuditLoggingMiddleware.cs
+│ └── Program.cs
+│
+├── RiskPlatform.Application/
+│ ├── Services/
+│ │ ├── RiskCalculationService.cs # VaR, CVaR, Greeks
+│ │ ├── HedgingService.cs
+│ │ ├── PnLService.cs
+│ │ └── AlertService.cs
+│ └── DTOs/
+│
+├── RiskPlatform.Domain/
+│ ├── Entities/
+│ │ ├── Trade.cs
+│ │ ├── Position.cs
+│ │ ├── RiskMetric.cs
+│ │ └── MarketData.cs
+│ └── Enums/
+│
+├── RiskPlatform.Infrastructure/
+│ ├── Persistence/ # EF Core + PostgreSQL
+│ ├── Cache/ # Redis IDistributedCache
+│ ├── Messaging/ # Kafka/RabbitMQ producers
+│ └── ExternalFeeds/ # Bloomberg, ICE connectors
+│
+└── RiskPlatform.Workers/ # Background services
+├── RiskCalculationWorker.cs
+├── MarketDataIngestionWorker.cs
+├── AlertWorker.cs
+└── ReportWorker.cs
+
+│ Clients: │
+│ ├── angular-spa (public, PKCE flow) │
+│ └── risk-api (confidential, client cred) │
+│ │
+│ Roles (RBAC): │
+│ ├── TRADER (submit trades, view own P&L)│
+│ ├── RISK_MANAGER (view all risk, set limits) │
+│ ├── COMPLIANCE_OFFICER (audit logs, reports) │
+│ └── ADMIN (user mgmt, system config) │
+│ │
+│ Features: │
+│ ├── MFA (TOTP) │
+│ ├── Social login (Azure AD, Google) │
+│ └── JWT Access Tokens (RS256) │
+
+1. Angular → Keycloak (Authorization Request + PKCE)
+2. User logs in → MFA challenge
+3. Keycloak → Angular (Authorization Code)
+4. Angular → Keycloak (Code + Verifier → Access Token + Refresh Token)
+5. Angular → .NET API (Bearer JWT in Authorization header)
+6. .NET API → validates JWT signature against Keycloak JWKS endpoint
+7. .NET API → checks role claims → authorize/deny

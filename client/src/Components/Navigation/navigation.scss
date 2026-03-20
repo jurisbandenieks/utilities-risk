@@ -22,12 +22,12 @@ mat-nav-list {
   padding-top: 8px;
 
   a[mat-list-item] {
-    color: #94a3b8;
+    color: #ffffff;
     border-radius: 8px;
     margin: 2px 8px;
 
     mat-icon {
-      color: #94a3b8;
+      color: #ffffff;
     }
 
     &:hover {
@@ -41,11 +41,17 @@ mat-nav-list {
   }
 }
 
-.nav-item--active {
-  background: rgba(#38bdf8, 0.15) !important;
-  color: #38bdf8 !important;
+.nav-item {
+  &__label {
+    color: #ffffff;
+  }
 
-  mat-icon {
+  &--active {
+    background: rgba(#38bdf8, 0.15) !important;
     color: #38bdf8 !important;
+
+    mat-icon {
+      color: #38bdf8 !important;
+    }
   }
 }

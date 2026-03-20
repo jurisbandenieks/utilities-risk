@@ -65,7 +65,8 @@
               "buildTarget": "client:build:production"
             },
             "development": {
-              "buildTarget": "client:build:development"
+              "buildTarget": "client:build:development",
+              "hmr": true
             }
           },
           "defaultConfiguration": "development"

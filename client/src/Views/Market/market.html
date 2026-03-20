@@ -1,3 +1,43 @@
-<div class="market-container">
-  <h1>Market</h1>
+<div class="page">
+  <h2 class="page__title">Market Data</h2>
+
+  <mat-card>
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="market-table">
+        <ng-container matColumnDef="commodity">
+          <th mat-header-cell *matHeaderCellDef>Commodity</th>
+          <td mat-cell *matCellDef="let row">{{ row.commodity }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let row">{{ row.price | number: '1.2-2' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="change">
+          <th mat-header-cell *matHeaderCellDef>Change %</th>
+          <td mat-cell *matCellDef="let row">
+            <span [class.positive]="row.change > 0" [class.negative]="row.change < 0">
+              {{ row.change > 0 ? '+' : '' }}{{ row.change }}%
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="volume">
+          <th mat-header-cell *matHeaderCellDef>Volume</th>
+          <td mat-cell *matCellDef="let row">{{ row.volume }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-chip [class]="'status-' + row.status">{{ row.status }}</mat-chip>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
 </div>

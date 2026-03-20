@@ -1,0 +1,15 @@
+<div class="sidenav__brand">
+  <mat-icon class="sidenav__brand-icon">bolt</mat-icon>
+  <span class="sidenav__brand-name">Utilities Risk</span>
+</div>
+
+<mat-divider />
+
+<mat-nav-list>
+  @for (item of navItems; track item.route) {
+    <a mat-list-item [routerLink]="item.route" routerLinkActive="nav-item--active">
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
+    </a>
+  }
+</mat-nav-list>

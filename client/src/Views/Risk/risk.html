@@ -1,3 +1,34 @@
-<div class="risk-container">
-  <h1>Risk</h1>
+<div class="page">
+  <h2 class="page__title">Risk Metrics</h2>
+
+  <div class="risk-grid">
+    @for (metric of metrics; track metric.label) {
+      <mat-card class="risk-card">
+        <mat-card-content>
+          <div class="risk-card__header">
+            <span class="risk-card__label">{{ metric.label }}</span>
+            <span class="risk-card__badge" [class]="'severity-' + metric.severity">{{
+              metric.severity
+            }}</span>
+          </div>
+          <div class="risk-card__values">
+            <span class="risk-card__value">{{ metric.value }}</span>
+            <span class="risk-card__limit">/ {{ metric.limit }}</span>
+          </div>
+          <mat-progress-bar
+            [value]="metric.utilization"
+            [color]="
+              metric.severity === 'high'
+                ? 'warn'
+                : metric.severity === 'medium'
+                  ? 'accent'
+                  : 'primary'
+            "
+            class="risk-card__bar"
+          />
+          <div class="risk-card__utilization">{{ metric.utilization }}% utilized</div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
 </div>

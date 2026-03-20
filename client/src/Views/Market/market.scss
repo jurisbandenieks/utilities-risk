@@ -1,0 +1,31 @@
+.page {
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 24px;
+    color: #1e293b;
+  }
+}
+
+.market-table {
+  width: 100%;
+}
+
+.positive {
+  color: #16a34a;
+  font-weight: 500;
+}
+.negative {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.status-active {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+}
+
+.status-halted {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+}

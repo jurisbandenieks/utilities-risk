@@ -1,0 +1,51 @@
+.sidenav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 16px;
+  background: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
+
+  &-icon {
+    color: #38bdf8;
+  }
+
+  &-name {
+    color: #f1f5f9;
+  }
+}
+
+mat-nav-list {
+  padding-top: 8px;
+
+  a[mat-list-item] {
+    color: #94a3b8;
+    border-radius: 8px;
+    margin: 2px 8px;
+
+    mat-icon {
+      color: #94a3b8;
+    }
+
+    &:hover {
+      background: #334155;
+      color: #f1f5f9;
+
+      mat-icon {
+        color: #f1f5f9;
+      }
+    }
+  }
+}
+
+.nav-item--active {
+  background: rgba(#38bdf8, 0.15) !important;
+  color: #38bdf8 !important;
+
+  mat-icon {
+    color: #38bdf8 !important;
+  }
+}

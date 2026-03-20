@@ -1,0 +1,41 @@
+.page {
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 24px;
+    color: #1e293b;
+  }
+}
+
+.trading-table {
+  width: 100%;
+}
+
+.direction {
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+
+  &.buy {
+    background: #dcfce7;
+    color: #15803d;
+  }
+  &.sell {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+}
+
+.status-confirmed {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+}
+.status-pending {
+  background-color: #fef9c3 !important;
+  color: #a16207 !important;
+}
+.status-cancelled {
+  background-color: #f1f5f9 !important;
+  color: #94a3b8 !important;
+}

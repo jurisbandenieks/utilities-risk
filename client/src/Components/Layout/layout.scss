@@ -1,0 +1,38 @@
+.app-shell {
+  height: 100vh;
+
+  // mat-sidenav-container fills full height
+  &.mat-drawer-container {
+    height: 100%;
+  }
+}
+
+.sidenav {
+  width: 240px;
+  background-color: #1e293b !important;
+  border-right: none !important;
+}
+
+// ── Top Bar ──────────────────────────────────────────────────────
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &__spacer {
+    flex: 1;
+  }
+}
+
+// ── Content Area ─────────────────────────────────────────────────
+.content {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: calc(100vh - 64px);
+}

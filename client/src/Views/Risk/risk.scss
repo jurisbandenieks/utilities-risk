@@ -1,0 +1,78 @@
+.page {
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 24px;
+    color: #1e293b;
+  }
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.risk-card {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    color: #475569;
+    font-weight: 500;
+  }
+
+  &__badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+  }
+
+  &__values {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  &__value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  &__limit {
+    font-size: 0.875rem;
+    color: #94a3b8;
+  }
+
+  &__bar {
+    margin-bottom: 6px;
+  }
+
+  &__utilization {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: right;
+  }
+}
+
+.severity-low {
+  background: #dcfce7;
+  color: #15803d;
+}
+.severity-medium {
+  background: #fef9c3;
+  color: #a16207;
+}
+.severity-high {
+  background: #fee2e2;
+  color: #b91c1c;
+}

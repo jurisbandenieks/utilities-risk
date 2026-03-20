@@ -1,3 +1,35 @@
-<div class="admin-container">
-  <h1>Admin</h1>
+<div class="page">
+  <h2 class="page__title">User Administration</h2>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Users</mat-card-title>
+      <mat-card-subtitle>Manage platform access and roles</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        @for (user of users; track user.email) {
+          <mat-list-item>
+            <div matListItemAvatar class="user-avatar">{{ user.initials }}</div>
+            <span matListItemTitle>{{ user.name }}</span>
+            <span matListItemLine>{{ user.email }}</span>
+            <div matListItemMeta class="user-meta">
+              <mat-chip>{{ user.role }}</mat-chip>
+              <mat-chip [class]="'status-' + user.status">{{ user.status }}</mat-chip>
+              <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+          <mat-divider />
+        }
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-flat-button color="primary">
+        <mat-icon>person_add</mat-icon>
+        Add User
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>

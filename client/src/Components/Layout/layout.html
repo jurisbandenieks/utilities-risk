@@ -1,0 +1,22 @@
+<mat-sidenav-container class="app-shell">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <app-navigation />
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="topbar">
+      <span class="topbar__title">Utilities Risk Platform</span>
+      <span class="topbar__spacer"></span>
+      <button mat-icon-button aria-label="Notifications">
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Account">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <main class="content">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,3 +1,28 @@
-<div class="reports-container">
-  <h1>Reports</h1>
+<div class="page">
+  <h2 class="page__title">Reports</h2>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-list>
+        @for (report of reports; track report.name) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>{{ report.icon }}</mat-icon>
+            <span matListItemTitle>{{ report.name }}</span>
+            <span matListItemLine>{{ report.description }}</span>
+            <div matListItemMeta class="report-meta">
+              <mat-chip class="freq-chip">{{ report.frequency }}</mat-chip>
+              <span class="report-meta__date">{{ report.lastRun }}</span>
+              <button mat-icon-button matTooltip="Download" color="primary">
+                <mat-icon>download</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="Run now" color="primary">
+                <mat-icon>play_circle</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+          <mat-divider />
+        }
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
 </div>

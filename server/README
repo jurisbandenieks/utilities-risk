@@ -1,0 +1,34 @@
+# utilities-risk — Server
+
+## Overview
+
+REST API server for the utilities-risk application.
+
+## Stack
+
+| Component | Details    |
+| --------- | ---------- |
+| Runtime   | .NET 8     |
+| Database  | PostgreSQL |
+| Cache     | Redis      |
+
+## API
+
+| Method | Path    | Description  |
+| ------ | ------- | ------------ |
+| GET    | /health | Health check |
+
+## Architecture
+
+Nginx acts as a reverse proxy. All requests to `/api/*` are forwarded to this server on port `5000`.
+
+## Development
+
+The server is started via `docker-compose.yml` alongside the Angular client and Nginx.
+
+```
+Client (port 3000) ──┐
+                     ├──> Nginx (port 80) ──> /api/* → Server (port 5000)
+                     │
+                     └──> /     → Client
+```
